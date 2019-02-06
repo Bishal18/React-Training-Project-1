@@ -1,1 +1,2 @@
-/* All action contants */
+export const INIT_PRODUCTS = 'PRODUCTS.INIT';
+export const LOADING_PRODUCTS = 'PRODUCTS.LOADING';
