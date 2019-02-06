@@ -62,9 +62,9 @@ class FilterSection extends Component {
     return (
       <div className="row mx-md-n5">
         <div className="col py-3 px-md-5">
-          <label for="productSearch" >Search(by keyword) :</label>
+          <label for="productSearch" >Search (by keyword) :</label>
           <DebounceInput
-            debounceTimeout={600}
+            debounceTimeout={config.debounceValue}
             type="search"
             onChange={this.onFilterChange}
             id="productSearch"
@@ -73,7 +73,7 @@ class FilterSection extends Component {
           />
         </div>
         <div className="col py-3 px-md-5">
-          <label for="categorySelect" >Filter(by category) :</label>
+          <label for="categorySelect" >Filter (by category) :</label>
           <select
             onChange={this.onFilterChange}
             id="categorySelect"

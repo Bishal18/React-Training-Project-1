@@ -1,4 +1,5 @@
 const config = {
+  debounceValue: 500,
   apiSettings: {
     baseURL: "https://reactprojectdbserver.azurewebsites.net",
     productRoute: "/products",
