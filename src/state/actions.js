@@ -19,6 +19,11 @@ export const addToCart = value => ({
   payload: { value }
 });
 
+export const removeProduct = value => ({
+  type: actions.REMOVE_FROM_CART,
+  payload: { value }
+});
+
 export function fetchAllProducts(filterSettings) {
   let { type, params } = filterSettings,
     queryString;

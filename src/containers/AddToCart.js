@@ -3,20 +3,15 @@ import * as actions from '../state/actions';
 import AddToCart from '../components/global/AddToCart';
 
 const mapStateToProps = (state) => {
-    
     return {
-        productData: state.cart.productData     
+        productFromCart: state.cart.productData     
     }
 }
 const mapDispatchToProps = (dispatch, getState) => {
     return {
-        addTocartData: function(productName) {
-            /* const actionFunc = actions.addtoCart(productName);
-             console.log("productName in container "+productName)
-            dispatch(actionFunc); */
-        }
-    }
-   
+        addToCart: (productData) => dispatch(actions.addToCart(productData)),
+        removeFromCart: (key) => dispatch(actions.removeProduct(key)) 
+    } 
 }
 
 export default connect(mapStateToProps, 
