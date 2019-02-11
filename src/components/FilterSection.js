@@ -23,7 +23,7 @@ class FilterSection extends Component {
   onFilterChange = event => {
     switch (event.target.id) {
       case "categorySelect":
-        this.setState({ filterVal: parseInt(event.target.value) }, () =>
+        this.setState({ filterVal: parseInt(event.target.value)}, () =>
           this.triggerFilter()
         );
         break;
@@ -62,7 +62,7 @@ class FilterSection extends Component {
     return (
       <div className="row mx-md-n5">
         <div className="col py-3 px-md-5">
-          <label for="productSearch" >Search (by keyword) :</label>
+          <label htmlFor="productSearch" >Search (by keyword) :</label>
           <DebounceInput
             debounceTimeout={config.debounceValue}
             type="search"
@@ -73,7 +73,7 @@ class FilterSection extends Component {
           />
         </div>
         <div className="col py-3 px-md-5">
-          <label for="categorySelect" >Filter (by category) :</label>
+          <label htmlFor="categorySelect" >Filter (by category) :</label>
           <select
             onChange={this.onFilterChange}
             id="categorySelect"

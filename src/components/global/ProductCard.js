@@ -1,21 +1,34 @@
 import React, { Component } from "react";
-
+import RatingStars from "./RatingStars";
+import Button  from "./Button";
+import {withRouter} from 'react-router-dom';
 class ProductCard extends Component {
+  onProductClick = () => {
+    this.props.history.push(`/products/${this.props.productData.id}`);
+  } 
   render() {
-    let { name, shortDescription, imageUrl, ratings } = this.props.productData;
+    let { name, shortDescription, imageUrl, ratings, price } = this.props.productData;
+    let quantity = 1;
+    this.productDetails = {
+      name,
+      price,
+      quantity,
+      total: price * quantity
+    }
     return (
       <div className="card" >
-        <img src={imageUrl} className="card-img-top" alt={name} />
+        <img src={imageUrl} onClick={this.onProductClick} className="card-img-top" alt={name} style={{cursor:'pointer'}} />
         <div className="card-body">
           <h5 className="card-title">{name}</h5>
+          <RatingStars ratings={ratings} />
           <p className="card-text">{shortDescription}</p>
-          <a href="#" className="btn btn-primary">
-            Go somewhere
-          </a>
+          <Button onClickHandler={() => this.props.addToCart({[`ProductId-${this.props.productData.id}`]: {productDetails: this.productDetails}})}>
+            Buy Now
+          </Button >
         </div>
       </div>
     );
   }
 }
 
-export default ProductCard;
+export default withRouter(ProductCard);

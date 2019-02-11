@@ -14,6 +14,11 @@ export const loadingProducts = value => ({
   payload: { value }
 });
 
+export const addToCart = value => ({
+  type: actions.ADD_TO_CART,
+  payload: { value }
+});
+
 export function fetchAllProducts(filterSettings) {
   let { type, params } = filterSettings,
     queryString;

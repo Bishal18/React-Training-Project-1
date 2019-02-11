@@ -1,6 +1,5 @@
 import React from "react";
 import NavBar from "../NavBar";
-import LoginTab from "../LoginTab";
 
 import config from "../../configs/config";
 

@@ -1,6 +1,10 @@
 import React, { Component } from "react";
-
+import Button from "./Button";
+import {withRouter} from 'react-router-dom';
 class CategoryCard extends Component {
+  onClickHandler = () => {
+    this.props.history.push(`/products/byCategory/${this.props.categoryData.id}`);  
+  }
   render() {
     let { name, imageUrl } = this.props.categoryData;
     return (
@@ -8,13 +12,13 @@ class CategoryCard extends Component {
         <img src={imageUrl} className="card-img-top" alt={name} />
         <div className="card-body">
           <h5 className="card-title">{name}</h5>
-          <a href="#" className="btn btn-primary">
-            Go somewhere
-          </a>
+          <Button onClickHandler={this.onClickHandler}>
+            More
+          </Button>
         </div>
       </div>
     );
   }
 }
 
-export default CategoryCard;
+export default withRouter(CategoryCard);

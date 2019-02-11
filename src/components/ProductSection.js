@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import ProductCard from "./global/ProductCard";
+import ProductCard from "../containers/ProductCard";
 class ProductSection extends Component {
   componentDidMount() {
     this.props.fetchAllProductData(this.props.filterSettings);
