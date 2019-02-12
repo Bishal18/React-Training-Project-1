@@ -1,3 +1,5 @@
+//Bishal / Surya
+
 import {connect} from 'react-redux';
 import * as actions from '../state/actions';
 import Cart from '../pages/Cart';
@@ -12,7 +14,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch, getState) => {
     return {
-        removeFromCart: (key) => dispatch(actions.removeProduct(key))
+        removeFromCart: (key) => dispatch(actions.removeProduct(key)) 
     }   
 }
 

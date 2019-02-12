@@ -1,3 +1,4 @@
+//Bishal
 import React from "react";
 import config from "../configs/config";
 import SlickSlider from "../utils/SlickSlider";

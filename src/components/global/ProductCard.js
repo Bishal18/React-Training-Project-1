@@ -1,3 +1,5 @@
+
+//Bishal
 import React, { Component } from "react";
 import RatingStars from "./RatingStars";
 import Button from "./Button";
@@ -7,6 +9,7 @@ class ProductCard extends Component {
   onProductClick = () => {
     this.props.history.push(`/products/${this.props.productData.id}`);
   }
+  /*Surya*/
   buyNowOnClick = () => {
     let { productData } = this.props;
     productData.quantity = 1;
