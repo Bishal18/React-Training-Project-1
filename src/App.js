@@ -14,6 +14,7 @@ import NotFound from "./pages/NotFound";
 import CategoryListing from "./pages/CategoryListing";
 import ProductDetail from "./pages/ProductDetail";
 import Cart from "./containers/Cart";
+import Checkout from './containers/Checkout';
 class App extends Component {
   render() {
     return (
@@ -27,6 +28,7 @@ class App extends Component {
             <Route path="/products/byCategory/:categoryId" exact component={ProductListing} />
             <Route path="/categories" component={CategoryListing} />
             <Route path="/cart" component={Cart} />
+            <Route path="/checkout" component={Checkout} />
             <Redirect path="/" exact to="/home" />
             <Route path="*" component={NotFound} />
           </Switch>

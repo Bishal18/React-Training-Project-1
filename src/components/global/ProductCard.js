@@ -7,6 +7,12 @@ class ProductCard extends Component {
   onProductClick = () => {
     this.props.history.push(`/products/${this.props.productData.id}`);
   } 
+  buyNowOnClick = () => {
+    let { productDetail } = this.props.productData;
+    console.log("price ", this.props.productData.price)
+    this.props.buyNow({ ...productDetail, qty: 1, totalPrice: this.props.productData.price });
+    this.props.history.push('/checkout');
+  }
   render() {
     let { name, shortDescription, imageUrl, ratings, price, id } = this.props.productData;
     let quantity = 1;
@@ -24,9 +30,12 @@ class ProductCard extends Component {
           <h5 className="card-title">{name}</h5>
           <RatingStars ratings={ratings} />
           <p className="card-text">{shortDescription}</p>
-          {/* <Button onClickHandler={() => this.props.addToCart({[`ProductId-${this.props.productData.id}`]: {productDetails: this.productDetails}})}>
+           {/*<Button onClick={() => this.props.addTocheckOut({[`ProductId-${this.props.productData.id}`]: {productDetails: this.productDetails}})}>
             Buy Now
           </Button > */}
+          <button className="btn btn-primary" onClick={this.buyNowOnClick}>
+            Buy Now
+          </button>
           <AddToCart productAdded = {this.productDetails}/>
         </div>
       </div>

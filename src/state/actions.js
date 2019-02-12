@@ -18,6 +18,14 @@ export const addToCart = value => ({
   type: actions.ADD_TO_CART,
   payload: { value }
 });
+export const removeFromCart = (productId) => ({
+  type: actions.REMOVE_FROM_CART,
+  payload: { productId }
+})
+export const buyNow = (value) => ({
+  type: actions.BUY_NOW,
+  payload: { value }
+})
 
 export const removeProduct = value => ({
   type: actions.REMOVE_FROM_CART,
