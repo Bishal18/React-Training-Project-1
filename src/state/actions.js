@@ -1,6 +1,7 @@
 import * as actions from "./actionTypes";
 import config from "../configs/config";
 import * as filters from "../configs/filterScenarios";
+import axios from 'axios'; 
 
 let apiConfig = config.apiSettings;
 
@@ -32,6 +33,16 @@ export const removeProduct = value => ({
   payload: { value }
 });
 
+
+export const login = (user) => ({
+  type: actions.LOGIN,
+  payload: { user }
+})
+
+export const logout = () => ({
+  type: actions.LOGOUT
+}) 
+
 export function fetchAllProducts(filterSettings) {
   let { type, params } = filterSettings,
     queryString;
@@ -56,4 +67,21 @@ export function fetchAllProducts(filterSettings) {
         dispatch(loadingProducts(false));
       });
   };
+}
+
+export const autheticateUser = (username, password, callback) => (dispatch, getState) => {
+    var apiUrl = `${apiConfig.baseURL}${apiConfig.usersRoute}?username=${username}&password=${password}`;
+    return axios.get(apiUrl)
+    .then(response => {
+    if (response.data && response.data.length > 0) {
+      dispatch(login(response.data[0]));
+      callback(true);
+    }
+    else {
+      callback(false);
+    }
+    })
+      .catch(function (error) {
+      console.log("Error in authenticateUser api: " + error);
+    })
 }

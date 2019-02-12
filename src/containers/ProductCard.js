@@ -3,16 +3,19 @@ import {connect} from 'react-redux';
 import * as actions from '../state/actions';
 import ProductCard from '../components/global/ProductCard';
 
-const mapStateToProps = (state) => {
+const mapStateToProps = ({cart:{productData}}) => {
     return {
-        
+
     }
 }
 
 const mapDispatchToProps = (dispatch) => {
+
     return {
-        addToCart: (productData) => dispatch(actions.addToCart(productData)) 
+        addToCart: (productData) => dispatch(actions.addToCart(productData))
+    
     }
+
 }
 
 export default connect(mapStateToProps,mapDispatchToProps)(ProductCard);
