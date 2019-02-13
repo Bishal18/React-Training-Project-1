@@ -1,3 +1,4 @@
+/* Bishal */
 import React from "react";
 import { NavLink } from "react-router-dom";
 import LoginTab from "./LoginTab";
@@ -23,6 +24,7 @@ const NavBar = props => {
               className="nav-item nav-link"
               activeClassName="active"
               to={list.link}
+              key={list.page}
             >
               {list.page}
             </NavLink>

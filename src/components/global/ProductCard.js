@@ -1,37 +1,48 @@
-import React, { Component } from "react";
+/* Bishal */ /* Will use global button later, by adding parameters as i had done with slickslider */
+import React from "react";
 import RatingStars from "./RatingStars";
-import Button  from "./Button";
-import {withRouter} from 'react-router-dom';
+import { withRouter } from "react-router-dom";
 import AddToCart from "../../containers/AddToCart";
-class ProductCard extends Component {
-  onProductClick = () => {
-    this.props.history.push(`/products/${this.props.productData.id}`);
-  } 
-  render() {
-    let { name, shortDescription, imageUrl, ratings, price, id } = this.props.productData;
-    let quantity = 1;
-    this.productDetails = {
+/* import Button from "./Button"; */
+
+const ProductCard = props => {
+  let {
+      name,
+      shortDescription,
+      imageUrl,
+      ratings,
+      price,
+      id
+    } = props.productData,
+    productDetails = {
       name,
       price,
-      quantity,
-      total: price * quantity,
       id
-    }
-    return (
-      <div className="card" >
-        <img src={imageUrl} onClick={this.onProductClick} className="card-img-top" alt={name} style={{cursor:'pointer'}} />
-        <div className="card-body">
-          <h5 className="card-title">{name}</h5>
-          <RatingStars ratings={ratings} />
-          <p className="card-text">{shortDescription}</p>
-          {/* <Button onClickHandler={() => this.props.addToCart({[`ProductId-${this.props.productData.id}`]: {productDetails: this.productDetails}})}>
-            Buy Now
-          </Button > */}
-          <AddToCart productAdded = {this.productDetails}/>
+    };
+  return (
+    <div className="card">
+      <img
+        src={imageUrl}
+        onClick={() => props.history.push(`/products/${props.productData.id}`)}
+        className="card-img-top"
+        alt={name}
+        style={{ cursor: "pointer" }}
+      />
+      <div className="card-body">
+        <h5 className="card-title">{name}</h5>
+        <RatingStars ratings={ratings} />
+        <p className="card-text">{shortDescription}</p>
+        <div className="row">
+          <div className="col-auto mr-auto">
+            <AddToCart productAdded={productDetails} buyNowMode = {true}/>
+          </div>
+          <div className="col-auto">
+            <AddToCart productAdded={productDetails} buyNowMode = {false}/>
+          </div>
         </div>
       </div>
-    );
-  }
-}
+    </div>
+  );
+};
 
 export default withRouter(ProductCard);

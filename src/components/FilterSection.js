@@ -1,3 +1,4 @@
+/* Bishal */
 import React, { Component } from "react";
 import config from "../configs/config";
 import * as filters from "../configs/filterScenarios";
@@ -9,7 +10,7 @@ class FilterSection extends Component {
   state = {
     categories: [],
     searchVal: "",
-    filterVal: 0
+    filterVal: this.props.filterVal
   };
 
   componentDidMount() {

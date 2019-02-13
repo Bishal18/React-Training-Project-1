@@ -1,13 +1,16 @@
+/* Bishal */
+
 import React from "react";
 import ProductSection from "../containers/ProductSection";
 import FilterSection from "../containers/FilterSection";
 import * as filtertypes from "../configs/filterScenarios";
 
 let filterSettings = {
-  type: "",
-  params: []
-};
-const ProductListing = (props) => {
+    type: "",
+    params: []
+  },
+  filterVal = 0;
+const ProductListing = props => {
   let { categoryId } = props.match.params;
   if (categoryId) {
     filterSettings = {
@@ -19,11 +22,11 @@ const ProductListing = (props) => {
         }
       ]
     };
+    filterVal = categoryId;
   }
-
   return (
     <div>
-      <FilterSection />
+      <FilterSection filterVal={filterVal} />
       <ProductSection filterSettings={filterSettings} />
     </div>
   );

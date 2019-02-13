@@ -1,11 +1,17 @@
+/* Bishal */
+
 import React from "react";
+import {withRouter} from "react-router-dom";
 const AddToCart = props => {
   let { productAdded, productFromCart } = props;
-  let productDetails = productFromCart[`ProductId-${productAdded.id}`]?productFromCart[`ProductId-${productAdded.id}`].productDetails : {quantity:0};
-  
+  let productDetails = productFromCart[`ProductId-${productAdded.id}`]
+    ? productFromCart[`ProductId-${productAdded.id}`].productDetails
+    : { quantity: 0 };
+
   let clickHandler = event => {
     switch (event.target.name) {
       case "AddToCart":
+      case "BuyNow":
         productAdded.quantity = productDetails.quantity + 1;
         break;
       case "DeleteFromCart":
@@ -13,30 +19,51 @@ const AddToCart = props => {
         break;
       default: //do nothing
     }
-    if(productAdded.quantity) {
-        props.addToCart({ [`ProductId-${productAdded.id}`]: { productDetails : productAdded } });
+    productAdded.total = productAdded.price * productAdded.quantity;
+    if (productAdded.quantity) {
+      props.addToCart({
+        [`ProductId-${productAdded.id}`]: { productDetails: productAdded }
+      });
+      if(props.buyNowMode) {
+        props.history.push('/checkout');
+      }
     } else {
-        props.removeFromCart(`ProductId-${productAdded.id}`);
-    }   
-    
+      props.removeFromCart(`ProductId-${productAdded.id}`);
+    }
   };
-  console.log(productAdded,productDetails,productFromCart);
   return (
     <span>
-      {productFromCart[`ProductId-${productAdded.id}`]? (
+      {props.buyNowMode ? (
         <span>
           <button
             type="button"
-            className="btn-group-xs btn-secondary"
+            className="btn btn-primary"
+            name="BuyNow"
+            onClick={clickHandler}
+          >
+            Buy Now
+          </button>
+        </span>
+      ) : productFromCart[`ProductId-${productAdded.id}`] ? (
+        <span>
+          <button
+            type="button"
+            className="btn btn-secondary"
             name="DeleteFromCart"
             onClick={clickHandler}
           >
             -
           </button>
-          <span>{productFromCart[`ProductId-${productAdded.id}`].productDetails.quantity}</span>
+          <span>
+            {" "}
+            {
+              productFromCart[`ProductId-${productAdded.id}`].productDetails
+                .quantity
+            }{" "}
+          </span>
           <button
             type="button"
-            className="btn-group-xs btn-secondary"
+            className="btn btn-secondary"
             name="AddToCart"
             onClick={clickHandler}
           >
@@ -57,4 +84,4 @@ const AddToCart = props => {
   );
 };
 
-export default AddToCart;
+export default withRouter(AddToCart);

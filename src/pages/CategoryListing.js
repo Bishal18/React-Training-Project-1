@@ -1,14 +1,13 @@
-import React, { Component } from 'react';
-import CategorySection from '../components/CategorySection';
+/* Apoorva, Modified by Bishal */
+import React from "react";
+import CategorySection from "../components/CategorySection";
 
-class CategoryListing extends Component {
-    render() {
-        return (
-            <div>
-                <CategorySection />
-            </div>
-        );
-    }
-}
+const CategoryListing = () => {
+  return (
+    <div>
+      <CategorySection />
+    </div>
+  );
+};
 
 export default CategoryListing;

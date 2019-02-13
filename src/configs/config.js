@@ -1,3 +1,4 @@
+/* Bishal */
 const config = {
   debounceValue: 500,
   apiSettings: {
@@ -50,7 +51,8 @@ const config = {
       page: "Checkout",
       link: "/checkout"
     }
-  ]
+  ],
+  cartHeader: ["Name", "Price", "Qty", "Total", ""]
 };
 
 export default config;

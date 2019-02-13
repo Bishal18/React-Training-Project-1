@@ -1,6 +1,8 @@
+/* Bishal except explicitly commented parts */
 import * as actions from "./actionTypes";
 import config from "../configs/config";
 import * as filters from "../configs/filterScenarios";
+import axios from 'axios'; 
 
 let apiConfig = config.apiSettings;
 
@@ -23,7 +25,16 @@ export const removeProduct = value => ({
   type: actions.REMOVE_FROM_CART,
   payload: { value }
 });
+/* Surya/Apoorva starts */
+export const checklogin = (user) => ({
+  type: actions.LOGIN,
+  payload: { user }
+})
 
+export const logout = () => ({
+  type: actions.LOGOUT
+}) 
+/* Surya/Apoorva ends */
 export function fetchAllProducts(filterSettings) {
   let { type, params } = filterSettings,
     queryString;
@@ -38,9 +49,9 @@ export function fetchAllProducts(filterSettings) {
     default:
       queryString = ``;
   }
-  return function asyncCode(dispatch, getState) {
+  return async function asyncCode(dispatch, getState) {
     dispatch(loadingProducts(true));
-    fetch(`${apiConfig.baseURL}${apiConfig.productRoute}${queryString}`)
+    await fetch(`${apiConfig.baseURL}${apiConfig.productRoute}${queryString}`)
       .then(response => response.json())
       .then(Products => {
         const action = initProducts(Products);
@@ -49,3 +60,20 @@ export function fetchAllProducts(filterSettings) {
       });
   };
 }
+/* Surya/Apoorva starts */
+export const validateUser = (username, password) => (dispatch, getState) => {
+  var apiUrl = `${apiConfig.baseURL}${apiConfig.usersRoute}?username=${username}&password=${password}`;
+  return axios.get(apiUrl)
+  .then(response => {
+  if (response.data && response.data.length > 0) {
+    dispatch(checklogin(response.data[0]));
+    
+  }
+  else {
+  }
+  })
+    .catch(function (error) {
+    console.log("Error in authenticateUser api: " + error);
+  })
+}
+/* Surya/Apoorva ends */

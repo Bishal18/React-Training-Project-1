@@ -1,3 +1,4 @@
+/* Surya, modified by Bishal */
 import * as ActionTypes from '../actionTypes';
 
 const INITIAL_STATE = {
@@ -10,7 +11,6 @@ const cartReducer = (state = INITIAL_STATE, action) => {
             return { ...state, productData: { ...state.productData,...action.payload.value} };
         case ActionTypes.REMOVE_FROM_CART:
             delete state.productData[action.payload.value];
-            console.log(state);
             return { ...state, productData: {...state.productData} }
         default:
             return state;

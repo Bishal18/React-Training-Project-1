@@ -1,3 +1,4 @@
+/* Bishal */
 import React, { Component } from "react";
 import ProductCard from "../containers/ProductCard";
 class ProductSection extends Component {
@@ -8,7 +9,7 @@ class ProductSection extends Component {
     let products = this.props.products;
     return (
       <div className="row">
-        {products.length == 0 ? (
+        {products.length === 0 ? (
           <div
             className="col col-xl-3 col-sm-4 col-xs-2"
           >

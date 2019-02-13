@@ -1,3 +1,4 @@
+/* Bishal,Surya,Apoorva */
 import React, { Component } from "react";
 import {
   BrowserRouter as Router,
@@ -14,6 +15,10 @@ import NotFound from "./pages/NotFound";
 import CategoryListing from "./pages/CategoryListing";
 import ProductDetail from "./pages/ProductDetail";
 import Cart from "./containers/Cart";
+import Checkout from './containers/Checkout';
+import Login  from './containers/LoginSection';
+import AuthRoute from './containers/AuthRoute'; 
+import OrderSummary from "./components/OrderSummary";
 class App extends Component {
   render() {
     return (
@@ -27,6 +32,9 @@ class App extends Component {
             <Route path="/products/byCategory/:categoryId" exact component={ProductListing} />
             <Route path="/categories" component={CategoryListing} />
             <Route path="/cart" component={Cart} />
+            <AuthRoute path="/checkout" component={Checkout} />
+            <Route path="/login" component={Login} />  
+            <Route path="/OrderSummary" component={OrderSummary} /> 
             <Redirect path="/" exact to="/home" />
             <Route path="*" component={NotFound} />
           </Switch>
